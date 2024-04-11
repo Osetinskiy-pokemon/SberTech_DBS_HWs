@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0162)file:///C:/Users/ohami/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%A4%D0%A2%D0%98/%D0%A1%D0%91%D0%A2/HW3/PouchDB.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>PouchDB</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <!-- DOM -->
+    <div class="App">
+      <button id="add">Add</button>
+      <button id="remove">Remove</button>
+      <button id="sync">Sync</button>
+      <ul id="list"><li>Khamikoeva</li></ul>
+    </div>
+
+    <!-- Sciprts -->
+    <script src="./PouchDB_files/pouchdb.min.js.загрузка"></script>
+    <script>
+      let data = []
+
+      const DBS = {
+        // Создаем локальную БД и коннектимся к удаленной 
+        Local: new PouchDB('base'),
+        Remote: new PouchDB('http://127.0.0.1:5984/test_db', {
+          auth: {
+            username: "admin",
+            password: "1234",
+          }, 
+        })
+      }
+
+      // Иницииируем реприкацию
+      const sync = DBS.Local.sync(DBS.Remote, {
+        live: true,
+        retry: true
+      }).on('change', ({ change }) => {
+        // обрабатываем изменения если в процессе синхронизации локлаьной бд таковые произошли
+		const doc = change.docs[0]
+        // deleted это просто флаг
+		if (doc._deleted) {
+          data = data.filter(item => item._id != doc._id )
+        } else {
+          data = data.concat(doc)
+        }
+		// рисуем саму html табличку
+        render(data)
+      })
+
+      const render = data => {
+        list.innerHTML = data.map(item => `<li>${item.name}</li>`).join('')
+      }
+
+      // получение всех документов  
+      const fetch = () => {
+        DBS.Local.allDocs({ include_docs: true })
+        .then(result => {
+          data = result.rows.map(r => r.doc)
+          render(data)
+        })
+      }
+
+      // Events
+      const addBtn = document.querySelector('#add')
+      const removeBtn = document.querySelector('#remove')
+      const list = document.querySelector('#list')
+      const syncBtn = document.querySelector('#sync')
+
+      addBtn.addEventListener('click', () => {
+        const item = { name: new Date() }
+        DBS.Local.post(item)
+      })
+
+      removeBtn.addEventListener('click', () => {
+        const item = data.pop()
+        if (! item) return
+        DBS.Local.remove(item)
+      })
+
+      syncBtn.addEventListener('click', () => fetch())
+
+    </script>
+  
+</body></html>
