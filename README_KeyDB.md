@@ -83,13 +83,13 @@ KeyDB использует тот же язык запросов, что и Redi
 
 **Разворачивание и выполнение нескольких запросов:**
 
-![img1](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/8a26637d-adb9-4aa2-b9c2-629bec20c99b)
+![img1](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/8d77f901-47bb-4b93-a426-c46af8ddb1aa)
 
-![img2](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/67464b3a-cded-4df5-9aa7-afac180fa42f)
+![img2](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/a58c4fe3-cbbd-4bab-b155-617a1bc7090a)
 
-![img3](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/326f770f-e0cf-48f6-b3a1-3faf8f70b56b)
+![img3](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/3483d7bf-f8c8-46d3-9e7d-cbd96413b451)
 
-![img4](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/37ff95a9-338e-4c36-9b10-ccbdc4ff5648)
+![img4](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/e6c80deb-dc81-4ce8-89ce-38a93a6da160)
 
 ## Распределение файлов БД по разным носителям:
 Распределение файлов базы данных KeyDB по разным носителям имеет особенности, связанные с её архитектурой in-memory и механизмами персистентности данных. Поскольку KeyDB является базой данных типа "ключ-значение", которая первоначально хранит все данные в оперативной памяти (RAM), механизмы распределения данных по физическим носителям зависят от выбранного метода сохранения данных на диск.
@@ -333,7 +333,7 @@ KeyDB поддерживает активное взаимодействие с 
 ## Создание своих собственных данных для демонстрации работы СУБД: 
 Собственные данные уже были созданы выше, как и демонстрация работы:
 
-![img2](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/24e5a631-0ac7-479a-a3b3-41d6f74dbe6d)
+![img2](https://github.com/Osetinskiy-pokemon/SberTech_DBS_HWs/assets/71440118/a58c4fe3-cbbd-4bab-b155-617a1bc7090a)
 
 ## Как продолжить самостоятельное изучение языка запросов с помощью демобазы:
 Для KeyDB, как и для многих других баз данных, не предоставляется официальная "демо-база данных" напрямую. Однако, учитывая что KeyDB совместима с Redis, легко создать демонстрационные данные для обучения или тестирования на основе общих примеров, используемых для Redis. Выше это уже было продемонстрировано.
